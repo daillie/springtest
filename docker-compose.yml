@@ -1,9 +1,18 @@
 version: '3.1'
 
 services:
+   
+   rest:
+      image: restspring
+      restart: always
+      depends_on:
+         mysql:
+            condition: service_healthy
+      ports:
+         - 8081:8081
 
    mysql:
-      image: mysql
+      image: mysql:latest
       restart: always
       environment:
          MYSQL_DATABASE: somedb
@@ -11,8 +20,12 @@ services:
          MYSQL_USER: user1
          MYSQL_PASSWORD: pass
          TZ: Europe/Samara
-      volumes:
-         - ./dbinit.sql:/data/application/init.sql
+      #volumes:
+         #- ./dbinit.sql:/docker-entrypoint-initdb.d/init.sql
+      healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 10s
+            retries: 20
       ports:
       - 3306:3306
 
