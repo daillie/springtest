@@ -1,27 +1,29 @@
-# Use root/root as user/password credentials :)
 version: '3.1'
 
 services:
 
-  mysql:
-    image: mysql
-    #command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_DATABASE: somedb
-      #MYSQL_ROOT_PASSWORD: example    
-    ports:
+   mysql:
+      image: mysql
+      restart: always
+      environment:
+         MYSQL_DATABASE: somedb
+         MYSQL_ROOT_PASSWORD: root
+         MYSQL_USER: user1
+         MYSQL_PASSWORD: pass
+         TZ: Europe/Samara
+      volumes:
+         - ./dbinit.sql:/data/application/init.sql
+      ports:
       - 3306:3306
-      
-  phpmyadmin:
-    image: phpmyadmin:latest
-    restart: always
-    ports:
+
+   phpmyadmin:
+      image: phpmyadmin:latest
+      restart: always
+      ports:
       - 8080:80
-    environment:      
-      #PMA_PORT: 3306
-      PMA_USER: root
-      PMA_HOST: mysql
-      PMA_PASSWORD: root
-    links:
+      environment:
+         PMA_HOST: mysql
+         PMA_USER: user1
+         PMA_PASSWORD: pass
+      links:
       - mysql
