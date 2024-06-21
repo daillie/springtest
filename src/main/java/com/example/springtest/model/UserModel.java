@@ -5,14 +5,21 @@ import com.example.springtest.entity.UserEntity;
 public class UserModel {
 
 	private Long id;
+
+	private String email;
+
+	private String login;
 	private String userName;
 	private String firstName;
 	private String secondName;	
 	private int age;
+
 	
 	public static UserModel toModel(UserEntity userEntity) {
 		UserModel model = new UserModel();
 		model.setAge(userEntity.getAge());
+		model.setEmail(userEntity.getEmail());
+		model.setLogin(userEntity.getLogin());
 		model.setId(userEntity.getId());
 		model.setFirstName(userEntity.getFirstName());
 		model.setSecondName(userEntity.getSecondName());
@@ -60,6 +67,19 @@ public class UserModel {
 		this.age = age;
 	}
 
-	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 }

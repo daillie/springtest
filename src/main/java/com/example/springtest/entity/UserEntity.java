@@ -12,89 +12,99 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class UserEntity {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, updatable = false)
-	private Long id;
-	@Column(updatable = false, unique = true)
-	private String login;
-	private String password;	
-	private String firstName;
-	private String secondName;
-	@Column(nullable = true)
-	private int age;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-	private List<PostEntity> userPosts;
-	
-	public UserEntity() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false)
+    private Long id;
+    @Column(updatable = false, unique = true, nullable = false)
+    private String login;
+    @Column(nullable = false)
+    private String password;
 
-	}
+    @Column(nullable = false, unique = true)
+    private String email;
+    private String firstName;
+    private String secondName;
+    @Column()
+    private int age;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<PostEntity> userPosts;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public UserEntity() {
 
-	public String getUserName() {
-		return login;
-	}
+    }
 
-	public void setUserName(String userName) {
-		this.login = userName;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getUserName() {
+        return login;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setUserName(String userName) {
+        this.login = userName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getSecondName() {
-		return secondName;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public String getSecondName() {
+        return secondName;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public List<PostEntity> getUserPosts() {
-		return userPosts;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public void setUserPosts(List<PostEntity> userPosts) {
-		this.userPosts = userPosts;
-	}
-	
+    public String getLogin() {
+        return login;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public List<PostEntity> getUserPosts() {
+        return userPosts;
+    }
+
+    public void setUserPosts(List<PostEntity> userPosts) {
+        this.userPosts = userPosts;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -28,6 +28,7 @@ public class UserController {
 	@PostMapping("/add")
 	public ResponseEntity<String> registerUser(@RequestBody UserEntity user) {
 		try {
+			System.out.println("REGISTRATION MOMENT");
 			userService.registration(user);
 			return ResponseEntity.ok("User: " + user.getUserName() + " succesfully registered!");
 		} catch (DuplicateUserNameException dupe) {
@@ -37,9 +38,11 @@ public class UserController {
 		}
 	}
 
+
 	@GetMapping("/all")
 	public ResponseEntity<String> getUsers() {
 		try {
+			System.out.println("wqefoiqewfoipwqefijo");
 			return ResponseEntity.ok(userService.findAll().toString());
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("err");

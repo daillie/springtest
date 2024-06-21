@@ -17,17 +17,13 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	//implementation("javax.servlet:jstl:1.2")	
-	//providedRuntime("javax.servlet:javax.servlet-api:4.0.1")	
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-tomcat:3.3.0")
+	implementation("org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0")
+	implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-	
-	
-	implementation("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.44")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	
 }

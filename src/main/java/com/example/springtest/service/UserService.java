@@ -1,9 +1,9 @@
 package com.example.springtest.service;
 
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import com.example.springtest.exceptions.DuplicateUserEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +18,19 @@ public class UserService {
 	@Autowired
 	UserRepo userRepo;
 
+	public UserEntity registerByRequired(String login, String email,String password){
+		UserEntity user = new UserEntity();
+		user.setEmail(email);
+		user.setLogin(login);
+		user.setPassword(password);
+		return userRepo.save(user);
+	}
 	public UserEntity registration(UserEntity user) throws DuplicateUserNameException {	
-		if (userRepo.existsByLogin(user.getUserName())) {
-			System.out.println("user with username: '" + user.getUserName() + "' already exists");
+		if (userRepo.existsByLogin(user.getUserName()))
 			throw new DuplicateUserNameException("user with username: '" + user.getUserName() + "' is already exist.");
-		}
+		if (userRepo.existsByEmail(user.getEmail()))
+			throw new DuplicateUserEmailException("user with email: '" + user.getUserName() + "' is already exist.");
+
 		System.out.println("new user!");
 		return userRepo.save(user);
 	}
