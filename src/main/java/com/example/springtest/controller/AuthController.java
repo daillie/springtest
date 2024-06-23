@@ -23,11 +23,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String addUser(@RequestParam("login") String login,
-                          @RequestParam("email") String email,
+    public String addUser(@RequestParam("email") String email,
                           @RequestParam("password") String password,
                           Model model) {
-        UserEntity createdUser = userService.registerByRequired(login, email, password);
+        UserEntity createdUser = userService.registerByRequired(email, password);
         System.out.println("ауауауааууауа");
         return "redirect:/users/find/" + createdUser.getId();
     }

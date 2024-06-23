@@ -4,82 +4,71 @@ import com.example.springtest.entity.UserEntity;
 
 public class UserModel {
 
-	private Long id;
+    private Long id;
 
-	private String email;
+    private String email;
+    private String userName;
+    private String firstName;
+    private String secondName;
+    private int age;
 
-	private String login;
-	private String userName;
-	private String firstName;
-	private String secondName;	
-	private int age;
 
-	
-	public static UserModel toModel(UserEntity userEntity) {
-		UserModel model = new UserModel();
-		model.setAge(userEntity.getAge());
-		model.setEmail(userEntity.getEmail());
-		model.setLogin(userEntity.getLogin());
-		model.setId(userEntity.getId());
-		model.setFirstName(userEntity.getFirstName());
-		model.setSecondName(userEntity.getSecondName());
-		return model;
-	}
-	
-	
-	public Long getId() {
-		return id;
-	}
+    public static UserModel toModel(UserEntity userEntity) {
+        UserModel model = new UserModel();
+        model.setAge(userEntity.getAge());
+        model.setEmail(userEntity.getEmail());
+        model.setId(userEntity.getId());
+        model.setFirstName(userEntity.getFirstName());
+        model.setSecondName(userEntity.getSecondName());
+        return model;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public String getUserName() {
-		return userName;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public String getSecondName() {
-		return secondName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public String getSecondName() {
+        return secondName;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

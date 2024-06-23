@@ -2,13 +2,7 @@ package com.example.springtest.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class UserEntity {
@@ -17,8 +11,6 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    @Column(updatable = false, unique = true, nullable = false)
-    private String login;
     @Column(nullable = false)
     private String password;
 
@@ -29,7 +21,7 @@ public class UserEntity {
     @Column()
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", fetch = FetchType.LAZY)
     private List<PostEntity> userPosts;
 
     public UserEntity() {
@@ -42,14 +34,6 @@ public class UserEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return login;
-    }
-
-    public void setUserName(String userName) {
-        this.login = userName;
     }
 
     public String getPassword() {
@@ -84,13 +68,6 @@ public class UserEntity {
         this.age = age;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public List<PostEntity> getUserPosts() {
         return userPosts;
@@ -107,4 +84,5 @@ public class UserEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
