@@ -1,9 +1,8 @@
 package com.example.springtest.controller.rest;
 
 import com.example.springtest.exceptions.DuplicateUserEmailException;
-import com.example.springtest.model.UserModel;
+import com.example.springtest.entity.model.UserModel;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -51,7 +49,6 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<Collection<UserEntity>> getUsers() {
         try {
-            System.out.println("wqefoiqewfoipwqefijo");
             return ResponseEntity.ok(userService.findAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new ArrayList<>());

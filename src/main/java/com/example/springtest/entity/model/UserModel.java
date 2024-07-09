@@ -1,4 +1,4 @@
-package com.example.springtest.model;
+package com.example.springtest.entity.model;
 
 import com.example.springtest.entity.UserEntity;
 

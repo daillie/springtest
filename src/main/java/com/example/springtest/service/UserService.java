@@ -1,18 +1,21 @@
 package com.example.springtest.service;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import com.example.springtest.exceptions.DuplicateUserEmailException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.springtest.entity.UserEntity;
 import com.example.springtest.exceptions.UserNotFoundException;
-import com.example.springtest.model.UserModel;
+import com.example.springtest.entity.model.UserModel;
 import com.example.springtest.repository.UserRepo;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     UserRepo userRepo;
@@ -28,7 +31,7 @@ public class UserService {
         if (userRepo.existsByEmail(user.getEmail()))
             throw new DuplicateUserEmailException("user with email: '" + user.getEmail() + "' is already exist.");
 
-        System.out.println("new user!");
+        log.info("new user!");
         return userRepo.save(user);
     }
 
@@ -41,8 +44,15 @@ public class UserService {
     }
 
     public boolean existsByEmail(String email) {
-        System.out.println("checking for existing email: " + email);
+        log.info("checking for existing email: " + email);
         return userRepo.existsByEmail(email);
+    }
+
+    public UserEntity getByEmail(String email) throws UserNotFoundException {
+        log.info("getByEmail");
+        Optional<UserEntity> user = userRepo.findByEmail(email);
+        return user.orElseThrow(() ->
+                new UserNotFoundException("User with this email is not present"));
     }
 
     public Long deleteById(Long id) throws UserNotFoundException {

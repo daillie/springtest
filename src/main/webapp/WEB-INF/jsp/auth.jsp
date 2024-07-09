@@ -3,13 +3,16 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 
 <c:set var="currentUrl" value="${pageContext.request.requestURL}"/>
+<c:set var="isError" value="${pageContext.request.getParameter('error')}"/>
+
 <!DOCTYPE html>
 <html>
 <t:header pageTitle="spring app :p"/>
 <body>
 <div class="container d-flex align-items-center justify-content-center">
     <div class="m-5 d-flex p-2 justify-content-md-center align-middle">
-        <form action="${currentUrl}/register" method="post" id="register_form">
+        <div>${currentUrl}</div>
+        <form action="/auth" method="get" id="register_form">
             <div class="form-group">
                 <label for="inputEmail">Email address</label>
                 <input
@@ -47,7 +50,7 @@
                 >Check me out</label
                 >
             </div>
-            <button type="button" id="sign_up_btn" class="btn btn-primary">
+            <button type="submit" id="sign_up_btn" class="btn btn-primary">
                 Sign Up
             </button>
         </form>
